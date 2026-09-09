@@ -1,18 +1,25 @@
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from '@/components/ui/select';
+import * as FilterSelect from './FilterSelect';
+import type { SelectOption } from './FilterSelect';
 import { Calendar, Printer, MapPin } from 'lucide-react';
+
+const OPERATION_TYPES: SelectOption[] = [
+    { label: 'Все операции', value: 'all' },
+    { label: 'Перемещение', value: 'move' },
+];
+
+const EXECUTORS: SelectOption[] = [{ label: 'admin admin', value: 'admin' }];
+
+const STATUS_FROM: SelectOption[] = [{ label: 'Основной', value: 'active' }];
+
+const STATUS_TO: SelectOption[] = [{ label: 'Заблокирован', value: 'blocked' }];
 
 export function TableFilters() {
     return (
         <div className="bg-background border rounded-lg p-3 space-y-2.5 shadow-sm">
+            {/* Первая строка */}
             <div className="flex flex-wrap items-center gap-2">
                 {/* Даты */}
                 <div className="flex items-center gap-1.5 border rounded-md px-2.5 py-1 bg-background text-sm h-9">
@@ -27,15 +34,13 @@ export function TableFilters() {
                     className="w-48 h-9"
                 />
 
-                <Select>
-                    <SelectTrigger className="w-48 h-9">
-                        <SelectValue placeholder="Тип операции" />
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectItem value="all">Все операции</SelectItem>
-                        <SelectItem value="move">Перемещение</SelectItem>
-                    </SelectContent>
-                </Select>
+                {/* Тип операции */}
+                <FilterSelect.Root options={OPERATION_TYPES}>
+                    <FilterSelect.Trigger className="w-48 h-9">
+                        <FilterSelect.Value placeholder="Тип операции" />
+                    </FilterSelect.Trigger>
+                    <FilterSelect.Content />
+                </FilterSelect.Root>
 
                 <Button
                     variant="outline"
@@ -46,14 +51,13 @@ export function TableFilters() {
                     <span>Печать</span>
                 </Button>
 
-                <Select>
-                    <SelectTrigger className="w-52 h-9">
-                        <SelectValue placeholder="Фильтр по исполнителям" />
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectItem value="admin">admin admin</SelectItem>
-                    </SelectContent>
-                </Select>
+                {/* Фильтр по исполнителям */}
+                <FilterSelect.Root options={EXECUTORS}>
+                    <FilterSelect.Trigger className="w-52 h-9">
+                        <FilterSelect.Value placeholder="Фильтр по исполнителям" />
+                    </FilterSelect.Trigger>
+                    <FilterSelect.Content />
+                </FilterSelect.Root>
 
                 <Button
                     variant="outline"
@@ -70,27 +74,26 @@ export function TableFilters() {
                 </div>
             </div>
 
+            {/* Вторая строка */}
             <div className="flex flex-wrap items-center gap-2">
                 <Input placeholder="Товар" className="w-48 h-9" />
                 <Input placeholder="Партия" className="w-32 h-9 bg-muted/20" />
 
-                <Select>
-                    <SelectTrigger className="w-44 h-9">
-                        <SelectValue placeholder="Статус от" />
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectItem value="active">Основной</SelectItem>
-                    </SelectContent>
-                </Select>
+                {/* Статус от */}
+                <FilterSelect.Root options={STATUS_FROM}>
+                    <FilterSelect.Trigger className="w-44 h-9">
+                        <FilterSelect.Value placeholder="Статус от" />
+                    </FilterSelect.Trigger>
+                    <FilterSelect.Content />
+                </FilterSelect.Root>
 
-                <Select>
-                    <SelectTrigger className="w-44 h-9">
-                        <SelectValue placeholder="Статус до" />
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectItem value="blocked">Заблокирован</SelectItem>
-                    </SelectContent>
-                </Select>
+                {/* Статус до */}
+                <FilterSelect.Root options={STATUS_TO}>
+                    <FilterSelect.Trigger className="w-44 h-9">
+                        <FilterSelect.Value placeholder="Статус до" />
+                    </FilterSelect.Trigger>
+                    <FilterSelect.Content />
+                </FilterSelect.Root>
 
                 <Input placeholder="Код задачи" className="w-32 h-9" />
                 <Input placeholder="Документ-основа..." className="w-44 h-9" />

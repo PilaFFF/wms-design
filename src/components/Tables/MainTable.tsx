@@ -13,9 +13,7 @@ import { TableFilters } from '../TableFilters';
 export default function MainTable() {
     return (
         <main className="flex-1 px-6 pb-6 overflow-hidden h-[calc(100vh-3rem)]">
-            {/* Единая карточка-контейнер на всю оставшуюся высоту */}
             <Card className="flex flex-col h-full bg-background border shadow-sm overflow-hidden">
-                {/* Шапка карточки: Заголовок + Фильтры */}
                 <CardHeader className="shrink-0 space-y-4 border-b p-4">
                     <CardTitle className="text-xl font-bold tracking-tight">
                         Список заказов
@@ -23,7 +21,6 @@ export default function MainTable() {
                     <TableFilters />
                 </CardHeader>
 
-                {/* Контентная часть: Таблица с прилипающим заголовком и внутренним скроллом */}
                 <CardContent className="flex-1 p-0 overflow-auto">
                     <Table>
                         <TableHeader className="sticky top-0 bg-background z-10 border-b">

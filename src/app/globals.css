@@ -12,9 +12,9 @@
     --color-foreground: var(--foreground);
 
     /* Переменные шрифтов */
-    --font-sans: 'Manrope', sans-serif;
+    --font-sans: 'Inter', sans-serif;
     --font-jakarta: 'Plus Jakarta Sans', sans-serif;
-    --font-manrope: 'Inter', sans-serif;
+    --font-manrope: 'Manrope', sans-serif;
     --font-mono: var(--font-geist-mono);
     --font-heading: var(--font-sans);
 
